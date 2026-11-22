@@ -1,0 +1,11 @@
+import api from './client'
+const g = u => api.get(u).then(r => r.data)
+export const getAll = () => g('/api/evenements')
+export const getOne = id => g(`/api/evenements/${id}`)
+export const getUpcoming = () => g('/api/evenements/upcoming')
+export const search = t => g(`/api/evenements/search?titre=${encodeURIComponent(t)}`)
+export const byCategorie = c => g(`/api/evenements/categorie/${c}`)
+export const getPlaces = id => g(`/api/evenements/${id}/places`)
+export const create = b => api.post('/api/evenements', b).then(r => r.data)
+export const update = (id, b) => api.put(`/api/evenements/${id}`, b).then(r => r.data)
+export const remove = id => api.delete(`/api/evenements/${id}`)
